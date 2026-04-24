@@ -57,7 +57,9 @@ This keeps customer logic isolated while reusing shared utilities.
 
 # 🔐 Environment Configuration
 
-The root `.env` file contains global environment variables.
+All client folders has their own .env file where all the Customer-specific environment variables, environment, auth, urls are added
+
+The root `.env` file contains only your name (at this time).
 
 Example:
 
