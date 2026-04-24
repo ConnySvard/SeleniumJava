@@ -26,6 +26,35 @@ root/
 
 ---
 
+# 👥 Customer Structure
+
+Each customer has its own isolated folder:
+
+```
+root/
+└── CustomerName/
+    ├── auth.ts
+    ├── config.ts
+    ├── .env (optional)
+    ├── testdata/ (optional)
+    ├── utils-customer/ (optional)
+    └── tests/
+        ├── example.spec.ts
+```
+
+### Customer Folder May Contain:
+
+- `auth.ts` → Customer-specific authentication logic
+- `config.ts` → Environment & base URL configuration
+- `.env` → Optional customer-specific environment variables
+- `testdata/` → Optional test data
+- `utils-customer/` → Optional customer-specific utilities
+- `tests/` → All test files for that customer
+
+This keeps customer logic isolated while reusing shared utilities.
+
+---
+
 # 🔐 Environment Configuration
 
 The root `.env` file contains global environment variables.
@@ -84,45 +113,6 @@ This must be an explicit per‑test decision.
 
 ---
 
-### Implementation
-
-```ts
-import { test } from "@playwright/test";
-
-/**
- * Blocks test execution on production unless explicitly allowed.
- *
- * ❌ Default behaviour:
- *    prodGuard(config.isProd);
- *    → Test is blocked on production.
- *
- * ✅ Explicitly allow on production:
- *    prodGuard(config.isProd, { allowOnProd: true });
- *    → Test is allowed to run on production.
- *
- * Notes:
- * - Tests are blocked on prod by default.
- * - Allowing execution on prod must be an explicit decision per test.
- */
-
-export function prodGuard(
-  isProd: boolean,
-  options?: { allowOnProd?: boolean }
-) {
-  const allowOnProd = options?.allowOnProd ?? false;
-
-  if (isProd && !allowOnProd) {
-    test.skip(true, "⛔ This test is not allowed to run on production");
-  }
-
-  if (isProd && allowOnProd) {
-    console.log("⚠️ Running on production – proceed with caution!");
-  }
-}
-```
-
----
-
 ### 🔒 Production Safety Philosophy
 
 - Production execution is **blocked by default**
@@ -145,34 +135,7 @@ Configured in `playwright.config.ts`.
 
 ---
 
-# 👥 Customer Structure
 
-Each customer has its own isolated folder:
-
-```
-root/
-└── CustomerName/
-    ├── auth.ts
-    ├── config.ts
-    ├── .env (optional)
-    ├── testdata/ (optional)
-    ├── utils-customer/ (optional)
-    └── tests/
-        ├── example.spec.ts
-```
-
-### Customer Folder May Contain:
-
-- `auth.ts` → Customer-specific authentication logic
-- `config.ts` → Environment & base URL configuration
-- `.env` → Optional customer-specific environment variables
-- `testdata/` → Optional test data
-- `utils-customer/` → Optional customer-specific utilities
-- `tests/` → All test files for that customer
-
-This keeps customer logic isolated while reusing shared utilities.
-
----
 
 # 🖼 Screenshot Tool
 
