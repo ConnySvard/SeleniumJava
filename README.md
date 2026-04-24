@@ -1,7 +1,3 @@
-Här är den uppdaterade **README.md** med nya `prodGuard`‑implementationen och korrekt usage.
-
-Du kan kopiera allt nedan och spara som:
-
 ```
 README.md
 ```
@@ -287,11 +283,5 @@ After execution:
 - Keep production runs explicit
 - Avoid setting worker count too high
 - Use shared utilities whenever possible
-
----
-
-# 🧑‍💻 Maintainer
-
-Internal test framework maintained for multi‑customer environments.
 
 ---
