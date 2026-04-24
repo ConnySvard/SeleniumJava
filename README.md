@@ -17,10 +17,10 @@ Supports multiple customers, shared utilities, production safeguards, and automa
 ---
 
 # 📁 Project Structure
-Project structure:
 
 ```
 root/
+│
 ├── .env
 ├── playwright.config.ts
 ├── utils/
@@ -28,24 +28,11 @@ root/
 │   ├── prod-guard.ts
 │   └── reporter.ts
 │
-├── Clinet1/
-├── Clinet2/
+├── MSF/
+├── Kommunal/
 ├── Cross-site tests/
 │
 └── README.md
-```
-Each customer has its own isolated folder:
-
-```
-root/
-└── CustomerName/
-    ├── auth.ts
-    ├── config.ts
-    ├── .env
-    ├── testdata/ (optional)
-    ├── utils-customer/ (optional)
-    └── tests/
-        ├── example.spec.ts
 ```
 
 ---
@@ -91,7 +78,7 @@ Prevents tests from running against production by default.
 ### Default Behavior (Blocked on Production)
 
 ```ts
-prodGuard(config.isProd, { allowOnProd: true }); //allowed on prod
+prodGuard(config.isProd);
 ```
 
 If `config.isProd === true`, the test will automatically be skipped.
@@ -105,6 +92,45 @@ prodGuard(config.isProd, { allowOnProd: true });
 ```
 
 This must be an explicit per‑test decision.
+
+---
+
+### Implementation
+
+```ts
+import { test } from "@playwright/test";
+
+/**
+ * Blocks test execution on production unless explicitly allowed.
+ *
+ * ❌ Default behaviour:
+ *    prodGuard(config.isProd);
+ *    → Test is blocked on production.
+ *
+ * ✅ Explicitly allow on production:
+ *    prodGuard(config.isProd, { allowOnProd: true });
+ *    → Test is allowed to run on production.
+ *
+ * Notes:
+ * - Tests are blocked on prod by default.
+ * - Allowing execution on prod must be an explicit decision per test.
+ */
+
+export function prodGuard(
+  isProd: boolean,
+  options?: { allowOnProd?: boolean }
+) {
+  const allowOnProd = options?.allowOnProd ?? false;
+
+  if (isProd && !allowOnProd) {
+    test.skip(true, "⛔ This test is not allowed to run on production");
+  }
+
+  if (isProd && allowOnProd) {
+    console.log("⚠️ Running on production – proceed with caution!");
+  }
+}
+```
 
 ---
 
@@ -139,7 +165,7 @@ root/
 └── CustomerName/
     ├── auth.ts
     ├── config.ts
-    ├── .env
+    ├── .env (optional)
     ├── testdata/ (optional)
     ├── utils-customer/ (optional)
     └── tests/
@@ -197,8 +223,8 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 export default defineConfig({
   testDir: ".",
   testMatch: [
-    "Client1/tests/**/*.spec.ts",
-    "Client2/tests/**/*.spec.ts",
+    "MSF/tests/**/*.spec.ts",
+    "Kommunal/tests/**/*.spec.ts",
     "Cross-site tests/tests/**/*.spec.ts",
     "Cross-site tests/Screenshot-tool/*.spec.ts",
   ],
@@ -269,7 +295,3 @@ After execution:
 Internal test framework maintained for multi‑customer environments.
 
 ---
-```
-
----
-
