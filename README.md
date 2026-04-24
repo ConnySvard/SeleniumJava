@@ -59,6 +59,20 @@ This keeps customer logic isolated while reusing shared utilities.
 
 All client folders has their own .env file where all the Customer-specific environment variables, environment, auth, urls are added
 
+```properties
+# ENV:
+# stage | preprod | prod
+# ENVIRONMENT SETTINGS
+ENVIRONMENT=stage 
+CUSTOMER=customer1
+BASIC_AUTH_USERNAME=user
+BASIC_AUTH_PASSWORD=password
+
+# Keycloak 
+KEYCLOAK_AUTH_USERNAME=user
+KEYCLOAK_AUTH_PASSWORD=password
+```
+
 The root `.env` file contains only your name (at this time).
 
 Example:
