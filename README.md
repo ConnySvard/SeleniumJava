@@ -20,7 +20,6 @@ Supports multiple customers, shared utilities, production safeguards, and automa
 
 ```
 root/
-│
 ├── .env
 ├── playwright.config.ts
 ├── utils/
