@@ -34,7 +34,7 @@ Example:
 
 ```properties
 # .env
-TESTER_NAME=Conny Svärd
+TESTER_NAME=Your name
 ```
 
 ### TESTER_NAME
