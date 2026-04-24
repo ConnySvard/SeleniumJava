@@ -44,11 +44,11 @@ root/
 
 ### Customer Folder May Contain:
 
-- `auth.ts` → Customer-specific authentication logic
-- `config.ts` → Environment & base URL configuration
-- `.env` → Optional customer-specific environment variables
+- `auth.ts` → Customer-specific authentication logic (Grabbed from .env)
+- `config.ts` → Environment & base URL configuration (Grabbed from .env)
+- `.env` → Customer-specific environment variables, environment, auth, urls
 - `testdata/` → Optional test data
-- `utils-customer/` → Optional customer-specific utilities
+- `utils-customer/` → Optional customer-specific utilities e.g. payment moethods
 - `tests/` → All test files for that customer
 
 This keeps customer logic isolated while reusing shared utilities.
