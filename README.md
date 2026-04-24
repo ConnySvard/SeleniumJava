@@ -17,8 +17,8 @@ root/
 │   ├── prod-guard.ts
 │   └── reporter.ts
 │
-├── Client1/
-├── Client2/
+├── CustomerName1/
+├── CustomerName2/
 ├── Cross-site tests/
 │
 └── README.md
@@ -35,7 +35,7 @@ root/
 └── CustomerName/
     ├── auth.ts
     ├── config.ts
-    ├── .env (optional)
+    ├── .env
     ├── testdata/ (optional)
     ├── utils-customer/ (optional)
     └── tests/
@@ -175,8 +175,8 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 export default defineConfig({
   testDir: ".",
   testMatch: [
-    "Client1/tests/**/*.spec.ts",
-    "Client2/tests/**/*.spec.ts",
+    "CustomerName1/tests/**/*.spec.ts",
+    "CustomerName2/tests/**/*.spec.ts",
     "Cross-site tests/tests/**/*.spec.ts",
     "Cross-site tests/Screenshot-tool/*.spec.ts",
   ],
