@@ -34,6 +34,19 @@ root/
 │
 └── README.md
 ```
+Each customer has its own isolated folder:
+
+```
+root/
+└── CustomerName/
+    ├── auth.ts
+    ├── config.ts
+    ├── .env
+    ├── testdata/ (optional)
+    ├── utils-customer/ (optional)
+    └── tests/
+        ├── example.spec.ts
+```
 
 ---
 
