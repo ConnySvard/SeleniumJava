@@ -17,6 +17,7 @@ Supports multiple customers, shared utilities, production safeguards, and automa
 ---
 
 # 📁 Project Structure
+Project structure:
 
 ```
 root/
