@@ -4,7 +4,7 @@ README.md
 
 ---
 
-```markdown
+markdown
 # Playwright Test Suite
 
 Automated end‑to‑end testing framework built with Playwright.  
