@@ -32,7 +32,7 @@ Each customer has its own isolated folder:
 
 ```
 root/
-└── CustomerName/
+└── CustomerName1/
     ├── auth.ts
     ├── config.ts
     ├── .env
