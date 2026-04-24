@@ -17,8 +17,8 @@ root/
 │   ├── prod-guard.ts
 │   └── reporter.ts
 │
-├── MSF/
-├── Kommunal/
+├── Client1/
+├── Client2/
 ├── Cross-site tests/
 │
 └── README.md
@@ -212,8 +212,8 @@ dotenv.config({ path: path.resolve(__dirname, ".env") });
 export default defineConfig({
   testDir: ".",
   testMatch: [
-    "MSF/tests/**/*.spec.ts",
-    "Kommunal/tests/**/*.spec.ts",
+    "Client1/tests/**/*.spec.ts",
+    "Client2/tests/**/*.spec.ts",
     "Cross-site tests/tests/**/*.spec.ts",
     "Cross-site tests/Screenshot-tool/*.spec.ts",
   ],
